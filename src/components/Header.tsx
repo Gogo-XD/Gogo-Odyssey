@@ -74,7 +74,7 @@ const Header: React.FC = () => {
           href="#WebBoard"
           onClick={scrollToContact}
         >
-          Contact
+          WebBoard
         </a>
       </div>
     </div>
