@@ -131,7 +131,15 @@
   opacity: 0;
   animation: zoomIn 0.4s ease-out forwards;
   animation-delay: 0.2s;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+.planetInfo::-webkit-scrollbar {
+  display: none;
+}
+
 
 @keyframes fadeIn {
   from {
