@@ -39,12 +39,6 @@
   transform: scale(1.5);
 }
 
-@property --initialAngle {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0deg;
-}
-
 @property --angle {
   syntax: "<angle>";
   inherits: true;

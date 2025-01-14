@@ -19,22 +19,24 @@ function StarField({ children }: StarFieldProps) {
 
   return (
     <div className={styles.starField}>
-      {stars.map((star) => (
-        <div
-          key={star.id}
-          className={styles.tinyStar}
-          style={
-            {
-              top: star.top,
-              left: star.left,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              animationDelay: `${star.delay}s`,
-              "--animation-duration": `${star.time}s`,
-            } as React.CSSProperties
-          }
-        />
-      ))}
+      <div className={styles.starsContainer}>
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className={styles.tinyStar}
+            style={
+              {
+                top: star.top,
+                left: star.left,
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                animationDelay: `${star.delay}s`,
+                "--animation-duration": `${star.time}s`,
+              } as React.CSSProperties
+            }
+          />
+        ))}
+      </div>
       {children}
     </div>
   );
