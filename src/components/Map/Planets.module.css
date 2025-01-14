@@ -4,17 +4,7 @@
   left: 50%;
   --x: calc(cos(var(--angle)) * var(--x-amplitude));
   --y: calc(sin(var(--angle)) * var(--y-amplitude));
-  --shadow-x: calc(cos(var(--angle)) * -2em);
-  --shadow-y: calc(sin(var(--angle)) * -2em);
-  --shadow-size: calc(sin(var(--angle)) * 1em);
-  --highlight-x: calc(cos(var(--angle)) * -0.5em);
-  --highlight-y: calc(sin(var(--angle)) * -0.5em);
   transform: translate(var(--x), var(--y)) translate(-50%, -50%);
-  .planet {
-    box-shadow: inset var(--shadow-x) var(--shadow-y) 2em var(--shadow-size)
-        #000,
-      var(--highlight-x) var(--highlight-y) 0.5em -0.2em #7da49e;
-  }
   z-index: var(--z-index-start);
   animation: orbit var(--speed) linear infinite, fadeInPlanet 1s ease-out forwards;
   animation-delay: var(--delay), 0s;
@@ -33,6 +23,13 @@
   background-image: var(--backgroundImage);
   background-size: 200% 100%;
   background-repeat: repeat;
+  --shadow-x: calc(cos(var(--angle)) * -2em);
+  --shadow-y: calc(sin(var(--angle)) * -2em);
+  --shadow-size: calc(sin(var(--angle)) * 1em);
+  --highlight-x: calc(cos(var(--angle)) * -0.5em);
+  --highlight-y: calc(sin(var(--angle)) * -0.5em);
+  box-shadow: inset var(--shadow-x) var(--shadow-y) 2em var(--shadow-size)
+  #000, var(--highlight-x) var(--highlight-y) 0.5em -0.2em #7da49e;
   animation: rotate var(--rotationSpeed) linear infinite;
   transition: transform 0.3s ease;
   cursor: pointer;
