@@ -1,0 +1,289 @@
+.planetOrbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  --x: calc(cos(var(--angle)) * var(--x-amplitude));
+  --y: calc(sin(var(--angle)) * var(--y-amplitude));
+  --shadow-x: calc(cos(var(--angle)) * -2em);
+  --shadow-y: calc(sin(var(--angle)) * -2em);
+  --shadow-size: calc(sin(var(--angle)) * 1em);
+  --highlight-x: calc(cos(var(--angle)) * -0.5em);
+  --highlight-y: calc(sin(var(--angle)) * -0.5em);
+  transform: translate(var(--x), var(--y)) translate(-50%, -50%);
+  .planet {
+    box-shadow: inset var(--shadow-x) var(--shadow-y) 2em var(--shadow-size)
+        #000,
+      var(--highlight-x) var(--highlight-y) 0.5em -0.2em #7da49e;
+  }
+  z-index: var(--z-index-start);
+  animation: orbit var(--speed) linear infinite, fadeInPlanet 1s ease-out forwards;
+  animation-delay: var(--delay), 0s;
+  opacity: 0;
+}
+
+.planetOrbit:has(.planet:hover) {
+  animation-play-state: paused;
+  z-index: 10 !important;
+}
+
+.planet {
+  position: relative;
+  border-radius: 50%;
+  z-index: 1;
+  background-image: var(--backgroundImage);
+  background-size: 200% 100%;
+  background-repeat: repeat;
+  animation: rotate var(--rotationSpeed) linear infinite;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.planet:is(:hover, :focus):not(:has(.planetInfo)) {
+  transform: scale(1.5);
+}
+
+@property --initialAngle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@keyframes orbit {
+  0% {
+    z-index: calc(4 - var(--z-index-start));
+    --angle: 0deg;
+  }
+  12% {
+    z-index: calc(4 - var(--z-index-start));
+  }
+  13% {
+    z-index: var(--z-index-start);
+  }
+  25% {
+    --angle: 90deg;
+  }
+  50% {
+    --angle: 180deg;
+  }
+  62% {
+    z-index: var(--z-index-start);
+  }
+  63% {
+    z-index: calc(4 - var(--z-index-start));
+  }
+  75% {
+    --angle: 270deg;
+  }
+  100% {
+    --angle: 360deg;
+    z-index: calc(4 - var(--z-index-start));
+  }
+}
+
+@keyframes rotate {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.planetLabel {
+  position: absolute;
+  top: -3rem;
+  left: 100%;
+  transform: translateX(1rem);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 2rem;
+  white-space: nowrap;
+  text-align: left;
+  border-bottom: 2px solid rgba(64, 224, 208, 0.5);
+  position: relative;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 
+    0 0 5px rgba(64, 224, 208, 0.5),
+    0 0 10px rgba(64, 224, 208, 0.3),
+    0 0 15px rgba(64, 224, 208, 0.2);
+  animation: holographicGlow 3s ease-in-out infinite;
+}
+
+.planetLabel::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 1px;
+  width: 2px;
+  height: calc(var(--size) / 2 + 10px);
+  background-color: white;
+  transform: rotate(-135deg);
+  transform-origin: bottom left;
+}
+
+.planetInfoOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.planetInfo {
+  position: relative;
+  width: 60vw;
+  height: 80vh;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid rgba(64, 224, 208, 0.5);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transform: scale(0.9);
+  opacity: 0;
+  animation: zoomIn 0.5s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.sectionInfo {
+  padding: 2rem;
+  font-family: sans-serif;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  color: white;
+}
+
+.sectionInfo h2 {
+  margin: 0 0 2rem 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.5rem;
+  color: rgba(64, 224, 208, 1);
+  text-align: center;
+}
+
+.sectionInfo p {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: rgba(64, 224, 208, 0.8);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.closeButton:hover {
+  color: rgba(64, 224, 208, 1);
+}
+
+.pauseAnimations {
+  animation-play-state: paused !important;
+  z-index: 1000 !important;
+}
+
+.planet.pauseAnimations {
+  animation-play-state: paused;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInPlanet {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes holographicGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(64, 224, 208, 0.5),
+      0 0 10px rgba(64, 224, 208, 0.3),
+      0 0 15px rgba(64, 224, 208, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px rgba(64, 224, 208, 0.7),
+      0 0 20px rgba(64, 224, 208, 0.5),
+      0 0 30px rgba(64, 224, 208, 0.3);
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+.projectsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.projectItem {
+  width: 300px;
+  height: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.creativeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.creativeItem {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+

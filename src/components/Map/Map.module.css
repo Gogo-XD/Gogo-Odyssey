@@ -1,0 +1,209 @@
+.map {
+  position: relative;
+  width: 100%;
+  height: 90%;
+  margin-top: 10vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.solarSystem {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.solarSystem > * {
+  animation: fadeInScale 0.8s ease-out forwards;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.5rem;
+}
+
+.background {
+  background-image: url("../../assets/background.jpg");
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.spaceHUD {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-position: center;
+  z-index: 1000;
+  animation: slideInFromLeft 2s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.spaceHUD img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  opacity: 0.8;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.helpIcon {
+  position: absolute;
+  top: 3%;
+  right: 4%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: rgb(87, 255, 255);
+  border: 1px solid rgb(87, 255, 255);
+  font-size: 20px;
+  z-index: 1001;
+  transition: background-color 0.3s ease;
+}
+
+.helpIcon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tooltip {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 260px;
+  font-family: "Orbitron", sans-serif;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+  z-index: 1001;
+  animation: fadeIn 0.5s ease-out forwards;
+
+
+}
+
+.helpIcon:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nanoHUDContainer {
+  position: absolute;
+  bottom: 4.5%;
+  left: 5.5%;
+  z-index: 10;
+}
+
+.nanoHUDContainer:hover .nanoHUD img {
+  scale: 1.3;
+  opacity: 1;
+}
+
+.nanoHUD {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  animation: fadeInScale 2s ease-out forwards;
+}
+
+.nanoHUD img {
+  width: 200px;
+  height: auto;
+  opacity: 0.7;
+  transition: scale 0.5s ease, opacity 0.5s ease;
+}
+
+.nanoHUD img[id="nanoHUD-1"] {
+  animation: rotateClockwise 10s linear infinite;
+}
+
+.nanoHUD img[id="nanoHUD-2"] {
+  animation: rotateCounterClockwise 30s linear infinite;
+}
+
+.nanoHUD img[id="nanoHUD-3"] {
+  animation: rotateCounterClockwise 15s linear infinite;
+}
+
+.nanoHUD img[id="nanoHUD-4"] {
+  animation: rotateClockwise 12s linear infinite;
+}
+
+.nanoHUD img[id="nanoHUD-5"] {
+  animation: rotateCounterClockwise 11s linear infinite;
+}
+
+.nanoHUD img[id="nanoHUD-6"] {
+  animation: rotateClockwise 40s linear infinite;
+}
+
+.nanoHUD img[id="nanoHUD-7"] {
+  animation: rotateClockwise 14s linear infinite;
+}
+
+
+@keyframes rotateClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotateCounterClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
