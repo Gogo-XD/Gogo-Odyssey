@@ -4,13 +4,13 @@ import Star from "./Star";
 import Ring from "./Rings";
 import Planet from "./Planets";
 import spaceHUD from "../../assets/SpaceHUD.png";
-import nanoHUD1 from "../../assets/nanoHUD-1.png";
-import nanoHUD2 from "../../assets/nanoHUD-2.png";
-import nanoHUD3 from "../../assets/nanoHUD-3.png";
-import nanoHUD4 from "../../assets/nanoHUD-4.png";
-import nanoHUD5 from "../../assets/nanoHUD-5.png";
-import nanoHUD6 from "../../assets/nanoHUD-6.png";
-import nanoHUD7 from "../../assets/nanoHUD-7.png";
+import nanoHUD1 from "../../assets/NanoHUD-1.png";
+import nanoHUD2 from "../../assets/NanoHUD-2.png";
+import nanoHUD3 from "../../assets/NanoHUD-3.png";
+import nanoHUD4 from "../../assets/NanoHUD-4.png";
+import nanoHUD5 from "../../assets/NanoHUD-5.png";
+import nanoHUD6 from "../../assets/NanoHUD-6.png";
+import nanoHUD7 from "../../assets/NanoHUD-7.png";
 
 function Map() {
   const [visibleElements, setVisibleElements] = useState<number>(0);
