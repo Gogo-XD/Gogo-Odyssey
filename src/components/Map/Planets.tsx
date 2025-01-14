@@ -4,7 +4,7 @@ import styles from "./Planets.module.css";
 import Ceres from "../../assets/Ceres.png";
 import Eris from "../../assets/Eris.png";
 import Haumea from "../../assets/Haumea.png";
-import Makemake from "../../assets/Makemake.png";
+import Makemake from "../../assets/MakeMake.png";
 
 function ProjectsInfo() {
   return (
